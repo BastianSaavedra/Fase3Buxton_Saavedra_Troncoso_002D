@@ -273,7 +273,7 @@ def nueva_ram(request):
     return render(request, 'catalogo/Ram/nueva_ram.html', data)
 
 def modificar_ram(request):
-    ram = models.get_object_or_404(Ram, id=id)
+    ram = get_object_or_404(Ram, id=id)
     data = {
         'ramForm' : RamForm(instance=ram)
     }
@@ -287,7 +287,7 @@ def modificar_ram(request):
     return render(request, 'catalogo/Ram/modificar_ram.html', data)
 
 def eliminar_ram(request):
-    ram = models.get_object_or_404(Ram, id=id)
+    ram = get_object_or_404(Ram, id=id)
     ram.delete()
     messages.success(request, "Producto eliminado exitosamente!")
     return redirect(to="rams")
@@ -306,7 +306,7 @@ def nuevo_almacenamiento(request):
     return render(request, 'catalogo/Almacenamiento/nuevo_almacenamiento.html', data)
 
 def modificar_almacenamiento(request):
-    almacenamiento = models.get_object_or_404(Almacenamiento, id=id)
+    almacenamiento = get_object_or_404(Almacenamiento, id=id)
     data = {
         'almacenamientoForm' : AlmacenamientoForm(instance=almacenamiento)
     }
@@ -320,7 +320,7 @@ def modificar_almacenamiento(request):
     return render(request, 'catalogo/Almacenamiento/modificar_almacenamiento.html', data)
 
 def eliminar_almacenamiento(request):
-    almacenamiento = models.get_object_or_404(Almacenamiento, id=id)
+    almacenamiento = get_object_or_404(Almacenamiento, id=id)
     almacenamiento.delete()
     messages.success(request, "Producto eliminado exitosamente!")
     return redirect(to="almacenamiento")
@@ -339,7 +339,7 @@ def nueva_fuente(request):
     return render(request, 'catalogo/FuentesPoder/nueva_fuente.html', data)
 
 def modificar_fuente(request):
-    fuente = models.get_object_or_404(FuentesPoder, id=id)
+    fuente = get_object_or_404(FuentesPoder, id=id)
     data = {
         'fuenteForm': FuentesPoderForm(instance=fuente)
     }
@@ -353,7 +353,7 @@ def modificar_fuente(request):
     return render(request, 'catalogo/FuentesPoder/modificar_fuente.html', data)
 
 def eliminar_fuente(request):
-    fuente = models.get_object_or_404(FuentesPoder, id=id)
+    fuente = get_object_or_404(FuentesPoder, id=id)
     fuente.delete()
     messages.success(request, "Producto eliminado exitosamente!")
     return redirect(to="fuentes")
@@ -372,12 +372,12 @@ def nuevo_gabinete(request):
     return render(request, 'catalogo/Gabinete/nuevo_gabinete.html', data)
 
 def modificar_gabinete(request):
-    gabinete = models.get_object_or_404(Gabinete, id=id)
+    gabinete = get_object_or_404(Gabinete, id=id)
     data = {
         'gabineteForm' : GabineteForm(instance=gabinete)
     }
     if request.method == 'POST':
-        formulario = GabineteForm(data=request.POST, instance=gabinete, files-request.FILES)
+        formulario = GabineteForm(data=request.POST, instance=gabinete, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "Producto modificado exitosamente!")
@@ -386,7 +386,7 @@ def modificar_gabinete(request):
     return render(request, 'catalogo/Gabinete/modificar_gabinete.html', data)
 
 def eliminar_gabinete(request):
-    gabinete = models.get_object_or_404(Gabinete, id=id)
+    gabinete = get_object_or_404(Gabinete, id=id)
     gabinete.delete()
     messages.success(request, "Producto eliminado exitosamente!")
     return redirect(to="gabinetes")
