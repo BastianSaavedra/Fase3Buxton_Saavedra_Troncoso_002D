@@ -1,0 +1,100 @@
+{% extends "base_generic.html" %}
+{% block title %}{{ gpu.modelo }}{% endblock %}
+{% block content %}
+<body>
+    <div class="container mt-3" id="seguimiento">
+        <div class="col-md-8">
+            <ol class="breadcrumb breadcrumb-extend">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'index' %}">
+                        Inicio
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'gpus' %}">
+                        Targetas de video
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">
+                    {{ gpu.marca }} {{ gpu.modelo }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="container mt-3">
+        <h2 class="text-center" style="font-family: fuente8bits; font-size: 4vw;">
+            {{ gpu.marca }} {{ gpu.modelo }}
+        </h2>
+        <div class="card" style="border: double; boderder-color: green;">
+            <img src="{{ gpu.imagen_detail.url }}">
+            </img>
+        </div>
+        <p class="text-center" style="font-size: 4vw;">
+            ${{ gpu.precio }}
+        </p>
+    </div>
+    <div class="container">
+        <h2 style="font-family: fuente8bits;">
+            Caracteristicas
+        </h2>
+        <table class="table table-striped table-hover table-responsive-sm" style="font-size: 20px;">
+            <tr>
+                <th>
+                    Marca:
+                </th>
+                <td>
+                    {{ gpu.marca }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Modelo:
+                </th>
+                <td>
+                    {{ gpu.modelo }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Plataforma:
+                </th>
+                <td>
+                    {{ gpu.plataforma }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Memoria:
+                </th>
+                <td>
+                    {{ gpu.memoria }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Frecuencia:
+                </th>
+                <td>
+                    {{ gpu.frecuencia}}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Stock:
+                </th>
+                <td>
+                    {{ gpu.stock }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Precio:
+                </th>
+                <td>
+                    {{ gpu.precio }}
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+{% endblock %}
