@@ -2,121 +2,120 @@
 {% block title %}Lista de Targetas de video{% endblock %}
 {% block content %}
 <br>
-    <head>
-        <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" rel="stylesheet">
-        </link>
-    </head>
-    <body>
-        <!--seguimiento-->
-        <div class="container" id="seguimiento">
-            <div class="col-md-5">
-                <ol class="breadcrumb breadcrumb-extend">
-                    <li class="breadcrumb-item">
-                        <a href="{% url 'index' %}">
-                            Inicio
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="{% url 'video' %}">
-                            Targetas de video
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item active">
-                        Lista de productos
-                    </li>
-                </ol>
+<head>
+   <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" rel="stylesheet">
+   </link>
+</head>
+<body>
+   <!--seguimiento-->
+   <div class="container" id="seguimiento">
+      <div class="col-md-5">
+            <ol class="breadcrumb breadcrumb-extend">
+               <li class="breadcrumb-item">
+                  <a href="{% url 'index' %}">
+                        Inicio
+                  </a>
+               </li>
+               <li class="breadcrumb-item">
+                  <a href="{% url 'video' %}">
+                        Targetas de video
+                  </a>
+               </li>
+               <li class="breadcrumb-item active">
+                  Lista de productos
+               </li>
+            </ol>
+      </div>
+   </div>
+   <!--listado de productos-->
+   <div class="container mt-5 col-md-8">
+      <div class="card">
+            <div class="card-body">
+               <h1 style="font-family: fuente8bits; font-size: 3vw; float:left;">
+                  Lista de productos
+               </h1>
+               <a class="btn btn-success btn-sm mt-4" href="{% url 'nueva_gpu' %}" style="float: right;">
+                  Ingresar Producto
+               </a>
+               {% if gpu_list %}
+               <table class="table table-striped table-hover table-responsive-sm">
+                  <tr style="font-size: 20px">
+                        <th>
+                           Marca
+                        </th>
+                        <th>
+                           Modelo
+                        </th>
+                        <th>
+                           Plataforma
+                        </th>
+                        <th>
+                           Memoria
+                        </th>
+                        <th>
+                           Frecuencia
+                        </th>
+                        <th>
+                           Stock
+                        </th>
+                        <th>
+                           Precio
+                        </th>
+                        <th>
+                           Opciones
+                        </th>
+                        <th>
+                           Detalles
+                        </th>
+                  </tr>
+                  {% for gpu in gpu_list %}
+                  <tr>
+                        <td>
+                           {{ gpu.marca}}
+                        </td>
+                        <td>
+                           {{ gpu.modelo }}
+                        </td>
+                        <td>
+                           {{ gpu.plataforma }}
+                        </td>
+                        <td>
+                           {{ gpu.memoria }}
+                        </td>
+                        <td>
+                           {{ gpu.frecuencia }}
+                        </td>
+                        <td>
+                           {{ gpu.stock }}
+                        </td>
+                        <td>
+                           {{ gpu.precio }}
+                        </td>
+                        <td>
+                           <a class="btn btn-info btn-sm" href="{% url 'modificar_gpu' gpu.id %}">
+                              Modificar
+                           </a>
+                           <a class="btn btn-danger btn-sm" href="{% url 'eliminar_gpu' gpu.id %}">
+                              Eliminar
+                           </a>
+                        </td>
+                        <td>
+                           <a href="{% url 'gpu-detail' gpu.id %}">
+                              <i class="fa" style="font-size: 24px;">
+                                    
+                              </i>
+                           </a>
+                        </td>
+                  </tr>
+                  {% endfor %}
+               </table>
+               {% else %}
+               <p>
+                  No hay productos
+               </p>
+               {% endif %}
             </div>
-        </div>
-        <!--listado de productos-->
-        <div class="container mt-5 col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <h1 style="font-family: fuente8bits; font-size: 3vw; float:left;">
-                        Lista de productos
-                    </h1>
-                    <a class="btn btn-success btn-sm mt-4" href="{% url 'nueva_gpu' %}" style="float: right;">
-                        Ingresar Producto
-                    </a>
-                    {% if gpu_list %}
-                    <table class="table table-striped table-hover table-responsive-sm">
-                        <tr style="font-size: 20px">
-                            <th>
-                                Marca
-                            </th>
-                            <th>
-                                Modelo
-                            </th>
-                            <th>
-                                Plataforma
-                            </th>
-                            <th>
-                                Memoria
-                            </th>
-                            <th>
-                                Frecuencia
-                            </th>
-                            <th>
-                                Stock
-                            </th>
-                            <th>
-                                Precio
-                            </th>
-                            <th>
-                                Opciones
-                            </th>
-                            <th>
-                                Detalles
-                            </th>
-                        </tr>
-                        {% for gpu in gpu_list %}
-                        <tr>
-                            <td>
-                                {{ gpu.marca}}
-                            </td>
-                            <td>
-                                {{ gpu.modelo }}
-                            </td>
-                            <td>
-                                {{ gpu.plataforma }}
-                            </td>
-                            <td>
-                                {{ gpu.memoria }}
-                            </td>
-                            <td>
-                                {{ gpu.frecuencia }}
-                            </td>
-                            <td>
-                                {{ gpu.stock }}
-                            </td>
-                            <td>
-                                {{ gpu.precio }}
-                            </td>
-                            <td>
-                                <a class="btn btn-info btn-sm" href="{% url 'modificar_gpu' gpu.id %}">
-                                    Modificar
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="{% url 'eliminar_gpu' gpu.id %}">
-                                    Eliminar
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{% url 'gpu-detail' gpu.id %}">
-                                    <i class="fa" style="font-size: 24px;">
-                                        
-                                    </i>
-                                </a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-                    {% else %}
-                    <p>
-                        No hay productos
-                    </p>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </body>
-    {% endblock %}
-</br>
+      </div>
+   </div>
+</body>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends "base_generic.html" %}
+{% block title %}Lista de Gabinetes{% endblock %}
+{% block content %}
+<head>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+   integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
+   crossorigin="anonymous">
+</head>
+<body>
+   <div id="seguimiento" class="container">
+      <div class="col-md-5">
+         <ol class="breadcrumb breadcrumb-extend">
+            <li class="breadcrumb-item">
+               <a href="{% url 'index' %}">
+                  Inicio
+               </a>
+            </li>
+            <li class="breadcrumb-item">
+               <a href="{% url 'gabo' %}">
+                  Gabinetes
+               </a>
+            </li>
+            <li class="breadcrumb-item active">
+               Lista de Productos
+            </li>
+         </ol>
+      </div>
+   </div>
+
+   <div class="container mt-5">
+      <div class="card">
+         <div class="card-body">
+            <h1 style="font-family: fuente8bits; font-size: 3vw; float: left;">
+               Lista de Productos
+            </h1>
+            <a href="{% url 'nuevo_gabinete' %}" style="float: right;"
+                  class="btn btn-success btn-sm mt-4">
+               Ingresar Producto
+            </a>
+            {% if gabinete_list %}
+            <table class="table table-striped table-hover table-responsive-sm">
+               <tr style="font-size: 20px;">
+                  <th>Marca</th>
+                  <th>Modelo</th>
+                  <th>Fuente en Gabinete</th>
+                  <th>Tipo Panel</th>
+                  <th>Stock</th>
+                  <th>Precio</th>
+                  <th>Opciones</th>
+                  <th>Detalles</th>
+               </tr>
+
+               {% for gab in gabinete_list %}
+               <tr>
+                  <td>
+                     {{ gab.marca }}
+                  </td>
+                  <td>
+                     {{ gab.modelo }}
+                  </td>
+                  <td>
+                     {{ gab.fuente_gabinete }}
+                  </td>
+                  <td>
+                     {{ gab.panel }}
+                  </td>
+                  <td>
+                     {{ gab.stock }}
+                  </td>
+                  <td>
+                     {{ gab.precio }}
+                  </td>
+                  <td>
+                     <a href="{% url 'modificar_gabinete' gab.id %}" 
+                           class="btn btn-info btn-sm">
+                        Modificar
+                     </a>
+                     <a href="{% url 'eliminar_gabinete' gab.id %}"
+                           class="btn btn-danger btn-sm">
+                        Eliminar
+                     </a>
+                  </td>
+                  <td>
+                     <a href="{% url 'gabinete-detail' gab.id %}">
+                        <i style="font-size: 24px;" class="fa">
+                           &#xf002
+                        </i>
+                     </a>
+                  </td>
+               </tr>
+               {% endfor %}
+            </table>
+            {% else %}
+            <p>
+               No hay productos
+            </p>
+            {% endif %}
+         </div>
+      </div>
+   </div>
+</body>
+{% endblock %}

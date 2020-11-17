@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from django.test import TestCase
 from . models import PlacasMadre
 

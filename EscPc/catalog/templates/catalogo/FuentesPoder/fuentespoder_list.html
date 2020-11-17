@@ -1,0 +1,85 @@
+{% extends "base_generic.html" %}
+{% block title %}Lista de Fuentes de Poder{% endblock %}
+{% block content %}
+<br>
+<head>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
+         crossorigin="anonymous">
+</head>
+<body>
+   <div id="seguimiento" class="container">
+      <div class="col-md-5">
+         <ol class="breadcrumb breadcrumb-extend">
+            <li class="breadcrumb-item">
+               <a href="{% url 'index' %}">Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+               <a href="{% url 'fuente' %}">Fuentes de Poder</a>
+            </li>
+            <li class="breadcrumb-item active">Lista de Producto</li>
+         </ol>
+      </div>
+   </div>
+   
+   <div class="container mt-5">
+      <div class="card">
+         <div class="card-body">
+            <h1 style="font-family: fuente8bits; font-size: 3vw; float: left;">
+               Lista de Productos
+            </h1>
+            <a href="{% url 'nueva_fuente' %}" style="float: right;"
+               class="btn btn-success btn-sm mt-4">
+               Ingresar Producto
+            </a>
+            {% if fuentespoder_list %}
+            <table class="table table-striped table-hover table-responsive-sm">
+               <tr style="font-size: 20px;">
+                  <th>Marca</th>
+                  <th>Potencia</th>
+                  <th>Certificacion</th>
+                  <th>Modular</th>
+                  <th>Stock</th>
+                  <th>Precio</th>
+                  <th>Opciones</th>
+                  <th>Detalles</th>
+               </tr>
+
+               {% for fuen in fuentespoder_list %}
+               <tr>
+                  <td>{{ fuen.marca }}</td>
+                  <td>{{ fuen.potencia }}</td>
+                  <td>{{ fuen.certificacion }}</td>
+                  <td>{{ fuen.modular }}</td>
+                  <td>{{ fuen.stock }}</td>
+                  <td>{{ fuen.precio }}</td>
+                  <td>
+                     <a href="{% url 'modificar_fuente' fuen.id %}"
+                        class="btn btn-info btn-sm">
+                        Modificar
+                     </a>
+                     <a href="{% url 'eliminar_fuente' fuen.id %}" 
+                        class="btn btn-danger btn-sm">
+                        Eliminar
+                     </a>
+                  </td>
+                  <td>
+                     <a href="{% url 'fuente-detail' fuen.id %}">
+                        <i class="fa" style="font-size: 24px;"> 
+                           &#xf002
+                        </i>
+                     </a>
+                  </td>
+               </tr>
+               {% endfor %}
+            </table>
+            {% else %}
+            <p>
+               No hay productos
+            </p>
+            {% endif %}
+         </div>
+      </div>
+   </div>
+</body>
+{% endblock %}

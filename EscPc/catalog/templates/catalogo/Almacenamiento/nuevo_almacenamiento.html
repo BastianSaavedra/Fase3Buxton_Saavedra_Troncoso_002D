@@ -1,0 +1,45 @@
+{% extends "base_generic.html" %}
+{% block title %}Nuevo Producto{% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+<body>
+   <div class="container-flui">
+      <div class="form">
+         <div class="row justify-content-center mt-5 pt-5">
+            <div class="col-md-7">
+               <h1 style="font-family: fuente8bits;">
+                  Ingresar Producto
+               </h1>
+               <hr class="bg-info">
+               <p class="pb-0 mb-0">
+                     Aqui deber rellenar los datos del productos 
+                     que quieras modificar o actualizar
+               </p>
+               <p class="text-danger small pt-0 nt-0">
+                     *Todos los campos son obligatorios
+               </p>
+               <form class="post-form" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="row form-group">
+                     <div class="col-md-8">
+                        <table style="font-size: 15px;">
+                              {{ almacenamientoForm | crispy }}
+                        </table>
+                        <div class="d-flex justify-content-left">
+                              <button class="btn btn-warning" style="font-size: 25px;" type="reset">
+                                 Limpiar
+                              </button>
+                              <button class="btn btn-success ml-3" style="font-size: 25px;" type="submit">
+                                 Ingresar
+                              </button>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+               </hr>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+{% endblock %}

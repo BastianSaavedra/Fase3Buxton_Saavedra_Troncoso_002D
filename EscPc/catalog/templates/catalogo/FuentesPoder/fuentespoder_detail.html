@@ -1,0 +1,67 @@
+{% extends "base_generic.html" %}
+{% block title %}{{ fuentespoder.marca }}{% endblock %}
+{% block content %}
+<body>
+   <div id="seguimiento" class="container mt-3">
+      <div class="col-md-8">
+         <ol class="breadcrumb breadcrumb-extend">
+            <li class="breadcrumb-item">
+               <a href="{% url 'index' %}">Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+               <a href="{% url 'fuente' %}">Fuentes de Poder</a>
+            </li>
+            <li class="breadcrumb-item active">
+               {{ fuentespoder.marca }} 
+            </li>
+         </ol>
+      </div>
+   </div>
+
+   <div class="container mt-3">
+      <h2 style="font-family: fuente8bits; font-size: 4vw;" class="text-center">
+         {{ fuentespoder.marca }}
+      </h2>
+      <div class="card" style="border: double; border-color: green;">
+         <img src="{{ fuentespoder.imagen_detail.url }}">
+      </div>
+      <p style="font-size: 4vw;" class="text-center">
+         ${{ fuentespoder.precio }}
+      </p>
+   </div>
+
+   <div class="container">
+      <h2 style="font-family: fuente8bits;">Caracteristicas</h2>
+      <table class="table table-striped table-hover table-responsive-sm">
+         <tr style="font-size: 20px;">
+            <th>Marca:
+               <td>
+                  {{ fuentespoder.marca }}
+               </td>
+            </th>
+         </tr>
+         <tr style="font-size: 20px;">
+            <th>Potencia:
+               <td>
+                  {{ fuentespoder.potencia }}
+               </td>
+            </th>
+         </tr>
+         <tr style="font-size: 20px;">
+            <th>Certificacion:
+               <td>
+                  {{ fuentespoder.cetificacion }}
+               </td>
+            </th>
+         </tr>
+         <tr style="font-size: 20px;">
+            <th>Modular:
+               <td>
+                  {{ fuentespoder.certificacion }}
+               </td>
+            </th>
+         </tr>
+      </table>
+   </div>
+</body>
+{% endblock %}

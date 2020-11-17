@@ -1,0 +1,80 @@
+{% extends "base_generic.html" %}
+{% block title %}{{ ram.marca }}{% endblock %}
+{% block content %}
+<body>
+   <div id="seguimiento" class="container mt-3">
+      <div class="col-md-5">
+         <ol class="breadcrumb breadcrumb-extend">
+            <li class="breadcrumb-item">
+               <a href="{% url 'index' %}">
+                  Inicio
+               </a>
+            </li>
+            <li class="breadcrumb-item">
+               <a href="{% url 'rams' %}">
+                  Memorias Ram
+               </a>
+            </li>
+            <li class="breadcrumb-item active">
+               {{ ram.marca }}
+            </li>
+         </ol>
+      </div>
+   </div>
+
+   <div class="container mt-3">
+      <h2 style="font-family: fuente8bits; font-size: 4vw;" class="text-center">
+         {{ ram.marca}}
+      </h2>
+      <div class="card" style="border: double; border-color: green;">
+         <img src="{{ ram.imagen_detail.url }}">
+      </div>
+      <p style="font-size: 4vw;" class="text-center">
+         ${{ ram.precio }}
+      </p>
+   </div>
+
+   <div class="container">
+      <h2 style="font-family: fuente8bits;">
+         Caracteristicas
+      </h2>
+      <table class="table table-striped table-hover table-responsive-sm">
+         <tr style="font-size: 20px;">
+            <th>Marca:
+               <td>
+                  {{ ram.marca }}
+               </td>
+            </th>
+         </tr>
+         <tr style="font-size: 20px;">
+            <th>Capacidad:
+               <td>
+                  {{ ram.capacidad }}
+               </td>
+            </th>
+         </tr>
+         <tr style="font-size: 20px;">
+            <th>Tipo de Ram:
+               <td>
+                  {{ ram.tipo }}
+               </td>
+            </th>
+         </tr>
+         <tr style="font-size: 20px;">
+            <th>Frecuencia:
+               <td> 
+                  {{ ram.frecuencia }}
+               </td>
+            </th>
+         </tr>
+         <tr style="font-size: 20px;">
+            <th>Formato:
+               <td>
+                  {{ram.formato}}
+               </td>
+            </th>
+         </tr>
+      </table>
+   </div>
+</body>
+{% endblock %}

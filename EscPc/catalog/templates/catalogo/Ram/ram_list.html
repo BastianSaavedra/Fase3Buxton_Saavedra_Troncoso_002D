@@ -1,0 +1,107 @@
+{% extends "base_generic.html" %}
+{% block title %}Lista de Memorias Ram{% endblock %}
+{% block content %}
+<head>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+   integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
+   crossorigin="anonymous">
+</head>
+<body>
+   <div id="seguimiento" class="container">
+      <div class="col-md-5">
+         <ol class="breadcrumb breadcrumb-extend">
+            <li class="breadcrumb-item">
+               <a href="{% url 'index' %}">
+                  Inicio
+               </a>
+            </li>
+            <li class="breadcrumb-item">
+               <a href="{% url 'rams' %}">
+                  Memorias ram
+               </a>
+            </li>
+            <li class="breadcrumb-item active">
+               Listado Memorias Ram
+            </li>
+         </ol>
+      </div>
+   </div>
+
+   <div class="container">
+      <div class="card">
+         <div class="card-body">
+            <h1 style="font-family: fuente8bits; font-size: 3vw; float: left;">
+               Lista de Productos
+            </h1>
+            <a href="{% url 'nueva_ram' %}" class="btn btn-success brn-sm mt-4"
+                  style="float: right;">
+               Ingresar Producto
+            </a>
+            {% if ram_list %}
+            <table class="table table-striped table-hover table-responsive-sm">
+               <tr style="font-size: 20px;">
+                  <th>Marca</th>
+                  <th>Capacidad</th>
+                  <th>Tipo</th>
+                  <th>Frecuencia</th>
+                  <th>Formato</th>
+                  <th>Stock</th>
+                  <th>Precio</th>
+                  <th>Opciones</th>
+                  <th>Detalles</th>
+               </tr>
+
+               {% for ra in ram_list %}
+               <tr>
+                  <td>
+                     {{ ra.marca }}
+                  </td>
+                  <td>
+                     {{ ra.capacidad }}
+                  </td>
+                  <td>
+                     {{ ra.tipo }}
+                  </td>
+                  <td>
+                     {{ ra.frecuencia }}
+                  </td>
+                  <td>
+                     {{ ra.formato }}
+                  </td>
+                  <td>
+                     {{ ra.stock }}
+                  </td>
+                  <td>
+                     {{ ra.precio }}
+                  </td>
+                  <td>
+                     <a href="{% url 'modificar_ram' ra.id %}" 
+                           class="btn btn-info btn-sm">
+                        Modificar
+                     </a>
+                     <a href="{% url 'eliminar_ram' ra.id %}"
+                           class="btn btn-danger btn-sm">
+                        Eliminar
+                     </a>
+                  </td>
+                  <td>
+                     <a href="{% url 'ram-detail' ra.id %}">
+                        <i class="fa" style="font-size: 24px;">
+                           &#xf002
+                        </i>
+                     </a>
+                  </td>
+               </tr>
+               {% endfor %}
+            </table>
+            {% else %}
+            <p>
+               No hay productos
+            </p>
+            {% endif %}
+         </div>
+      </div>
+   </div>
+
+</body>
+{% endblock %}
