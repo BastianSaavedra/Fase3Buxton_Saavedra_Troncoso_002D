@@ -1,0 +1,65 @@
+{% extends "base_generic.html" %}
+{% block title %}Lista de Usuario{% endblock %}
+{% block content %}
+<br>
+<head>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+   integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
+   crossorigin="anonymous">
+</head>
+
+<body >
+   <div id="seguimiento" class="container">
+      <div class="col-md-3">
+         <ol class="breadcrumb breadcrumb-extend">
+               <li class="breadcrumb-item">
+                  <a href="{% url 'index' %}">Inicio</a>
+               </li>
+               <li class="breadcrumb-item active">
+                  Lista de usuario
+               </li>
+         </ol>
+      </div>
+   </div>
+   <div class="container mt-5" >
+      <div class="card">
+         <div class="card-body">
+            <h1 style="font-family: fuente8bits; font-size: 3vw; float:left;">
+            Lista de Usuarios
+            </h1>
+            <a style="float: right;" href="{% url 'nuevo_usuario' %}" class="btn btn-success btn-sm mt-4 mr-5">Ingresar Usuario</a>
+            {% if user_list %}
+            <table class="table table-striped table-hover table-responsive-sm">
+               <tr style="font-size: 20px;">
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Usuario</th>
+                  <th>Email</th>
+                  <th></th>
+               </tr>
+
+               {% for u in user_list %}
+               <tr>
+                  <td>{{ u.first_name}}</td>
+                  <td>{{ u.last_name }}</td>
+                  <td>{{ u.username}}</td>
+                  <td>{{ u.email }}</td>
+                  <td>
+                     <a href="{% url 'eliminar_usuario' u.id %}" class="btn btn-danger btn-sm">
+                        Eliminar
+                     </a>
+                  </td>
+               </tr>
+            {% endfor %}
+            </table>
+            {% else %}
+               <p>No hay Usuarios</p>
+            {% endif %}
+         </div>
+      </div>
+   </div>
+   <br>
+   <br>
+   <br>
+</body>
+{% endblock %}

@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView
 from .forms import PlacaForm, ContactoForm, ProceForm, GpuForm, RamForm, AlmacenamientoForm, FuentesPoderForm, GabineteForm, MonitoreForm
 from django.contrib import messages
 
+
 '''
    AQUI SE ENCUENTRAN LAS VISTAS DE LOS PRODUCTOS, AQUI UNO PUEDE SACAR LOS
    DATOS DE LOS MODELOS Y UTILIZARLOS PARA QUE CUMPLAN ALGUNA FUNCION,
@@ -172,6 +173,7 @@ def nueva_placa(request):
          return redirect(to="placas")
    return render(request, 'catalogo/Placamadre/nueva_placa.html', data)
 #MODIFICAR PLACA
+
 def modificar_placa(request, id):
    placa = get_object_or_404(PlacasMadre, id=id)
    data = {
@@ -186,6 +188,7 @@ def modificar_placa(request, id):
       data["form"] = formulario
    return render(request,'catalogo/Placamadre/modificar_placa.html', data)
 #ELIMINAR PLACA
+
 def eliminar_placa(request, id):
    placa = get_object_or_404(PlacasMadre, id=id)
    placa.delete()

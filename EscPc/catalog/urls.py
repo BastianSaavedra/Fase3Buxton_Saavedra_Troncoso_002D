@@ -11,7 +11,7 @@ from . import views
 
 urlpatterns = [
    # URL PRINCIPALES
-   path('', views.index, name="index"),
+   path('index', views.index, name="index"),
    path('placasmadres/', views.placamadre, name="placamadre"),
    path('procesadores/', views.procesador, name="procesador"),
    path('tarjetadevideo/', views.video, name="video"),
@@ -67,7 +67,7 @@ urlpatterns = [
 
    # URL GABINETE
    path('gabinetes/', views.GabineteListView.as_view(), name="gabinetes"),
-   path('gabinente/<int:pk>', views.GabineteDetailView.as_view(), name="gabinete-detail"),
+   path('gabinete/<int:pk>', views.GabineteDetailView.as_view(), name="gabinete-detail"),
    path('nuevo-gabinete/', views.nuevo_gabinete, name="nuevo_gabinete"),
    path('modificar-gabinete/<id>/', views.modificar_gabinete, name="modificar_gabinete"),
    path('eliminar-gabinete/<id>/', views.eliminar_gabinete, name="eliminar_gabinete"),
@@ -78,5 +78,5 @@ urlpatterns = [
    path('nuevo-monitor/', views.nuevo_monitor, name="nuevo_monitor"),
    path('modificar-monitor/<id>', views.modificar_monitor, name="modificar_monitor"),
    path('eliminar-monitor/<id>', views.eliminar_monitor, name="eliminar_monitor"),
-
+   
 ]

@@ -25,13 +25,14 @@
             </ol>
       </div>
    </div>
+   {% if perms.app.view_fuente_poder %}
    <div class="my-2 my-lg-0" style="text-align: center;">
       <a href="{% url 'fuentes' %}" style="font-size: 20px;"
             class="btn btn-warning btn-sm">
          Lista de Productos
       </a>
    </div>
-
+   {% endif %}
    <div class="album py-5">
       <div class="container">
             <div class="row">

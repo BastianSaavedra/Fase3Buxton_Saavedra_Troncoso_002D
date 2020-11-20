@@ -2,6 +2,8 @@
 from django import forms
 from django.forms import ModelForm
 from .models import PlacasMadre, Procesadore, Gpu, Ram, Almacenamiento, FuentesPoder, Gabinete, Monitore, Contacto
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 '''
    AQUI SE ENCUENTRAN LOS FORMULARIOS QUE SE OCUPARAN, EN ESTE CASO ESTAMOS 
@@ -62,3 +64,5 @@ class ContactoForm(ModelForm):
    class Meta:
       model = Contacto
       fields = '__all__'
+      
+

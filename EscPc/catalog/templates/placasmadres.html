@@ -31,11 +31,14 @@
          </ol>
       </div>
    </div>
+   {% if perms.app.view_placas_madre %}
    <div class="my-2 my-lg-0" style="text-align: center;">
       <a class="btn btn-warning btn-sm" href="{% url 'placas' %}" style="font-size: 20px;">
          Lista de Productos
       </a>
    </div>
+   {% endif %}
+
    {% if productoPlaca %}
    <div class="album py-5">
       <div class="container">

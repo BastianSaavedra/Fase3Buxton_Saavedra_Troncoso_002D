@@ -32,11 +32,13 @@
          </ol>
       </div>
    </div>
+   {% if perms.app.view_gpu %}
    <div class="my-2 my-lg-0" style="text-align: center;">
       <a class="btn btn-warning btn-sm" href="{% url 'gpus' %}" style="font-size: 20px;">
          Lista de Productos
       </a>
    </div>
+   {% endif %}
    {% if productoGpu %}
    <div class="album py-5">
       <div class="container">
@@ -79,9 +81,9 @@
                            </h3>
                            <div class="d-flex justify-content-between align-items-center">
                               <div class="btn-group">
-                                 <button class="btn btn-sm btn-outline-secondary" type="button">
-                                       Detalles
-                                 </button>
+                                 <a class="btn btn-sm btn-outline-secondary" href="{% url 'gpu-detail' t.id %}">
+                                    Detalles
+                              </a>
                                  <button class="btn btn-sm btn-outline-secondary" type="button">
                                        Agregar
                                  </button>
