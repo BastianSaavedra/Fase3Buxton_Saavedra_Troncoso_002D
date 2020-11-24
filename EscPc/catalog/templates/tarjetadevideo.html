@@ -37,75 +37,92 @@
       <a class="btn btn-warning btn-sm" href="{% url 'gpus' %}" style="font-size: 20px;">
          Lista de Productos
       </a>
-   </div>
    {% endif %}
-   {% if productoGpu %}
-   <div class="album py-5">
-      <div class="container">
-         <div class="row">
-               {% for t in productoGpu %}
-               <div class=" col-md-4">
-                  <div class="card mb-4 shadow-sm">
-                     <a href="{% url 'gpu-detail' t.id %}">
-                           <img class="producto" src="{{ t.imagen.url }}" />
-                     </a>
-                     <div class="card-body">
-                           <p class="card-text">
-                              <b>
-                                 Marca:
-                              </b>
-                              {{ t.marca }}
-                              <br>
-                              <b>
-                                 Modelo:
-                              </b>
-                              {{ t.modelo }}
-                              <br>
-                              <b>
-                                 Plataforma:
-                              </b>
-                              {{ t.plataforma }}
-                              <br>
-                              <b>
-                                 Memoria:
-                              </b>
-                              {{ t.memoria }}
-                              <br>
-                              <b>
-                                 Frecuencia:
-                              </b>
-                              {{ t.frecuencia }}
-                           </p>
-                           <h3>
-                              ${{ t.precio }}
-                           </h3>
-                           <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                 <a class="btn btn-sm btn-outline-secondary" href="{% url 'gpu-detail' t.id %}">
-                                    Detalles
-                              </a>
-                                 <button class="btn btn-sm btn-outline-secondary" type="button">
-                                       Agregar
-                                 </button>
-                              </div>
-                              <small class="text-muted ml-2">
-                                 stock:
-                                 <b>
-                                       {{ t.stock }}
-                                 </b>
-                              </small>
-                           </div>
-                     </div>
-                  </div>
-               </div>
-               {% endfor %}
-         </div>
-      </div>
+   {% if user.is_authenticated %}
+   <div class="col-2 ml-5 float-right">
+      {% include "cart/widget_gpu.html" %}
    </div>
    {% else %}
-   <p>
-      No hay productos
-   </p>
+      <p style="font-size: 25px;" class="text-center">
+         Para poder agregar al carrito
+         debes <a href="{% url 'registro' %}">registrarte</a>
+         o <a href="{% url 'login' %}">Iniciar Sesion</a> 
+      </p>
    {% endif %}
+   </div>
+
+
+
+   <div class="album py-5">
+      <div class="container">
+         {% if productoGpu %}
+         <div class="row">
+            {% for product in productoGpu %}
+            <div class=" col-md-4">
+               <div class="card mb-4 shadow-sm">
+                  <a href="{% url 'gpu-detail' product.id %}">
+                        <img class="producto" src="{{ product.imagen.url }}" />
+                  </a>
+                  <div class="card-body">
+                     <p class="card-text">
+                        <b>
+                           Marca:
+                        </b>
+                        {{ product.marca }}
+                        <br>
+                        <b>
+                           Modelo:
+                        </b>
+                        {{ product.modelo }}
+                        <br>
+                        <b>
+                           Plataforma:
+                        </b>
+                        {{ product.plataforma }}
+                        <br>
+                        <b>
+                           Memoria:
+                        </b>
+                        {{ product.memoria }}
+                        <br>
+                        <b>
+                           Frecuencia:
+                        </b>
+                        {{ product.frecuencia }}
+                     </p>
+                     <h3>
+                        ${{ product.precio }}
+                     </h3>
+                     <small class="text-muted ml-2">
+                        stock:
+                        <b>
+                              {{ product.stock }}
+                        </b>
+                     </small>
+                  </div>
+                  <div class="card-footer text-center mb-3 btn-group">
+                     <a href="{% url 'gpu-detail' product.id %}"
+                           class="btn btn-sm btn-info">
+                        Detalles
+                     </a>
+                     {% if user.is_authenticated %}
+                     <a href="{% url 'cart:add_gpu' product.id %}"
+                           class="btn btn-sm btn-success">
+                        Agregar a carrito
+                     </a>
+                     {% endif %}
+                  </div>
+               </div>
+            </div>
+            {% endfor %}
+         </div>
+         {% else %}
+            <p>
+               No hay productos
+            </p>
+         {% endif %}
+      </div>
+   </div>
+
 </body>
 {% endblock %}

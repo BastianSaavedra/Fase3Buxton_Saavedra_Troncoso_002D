@@ -4,6 +4,7 @@ from .models import PlacasMadre, Procesadore, Gpu, Ram, Almacenamiento,FuentesPo
 from django.views.generic import ListView, DetailView
 from .forms import PlacaForm, ContactoForm, ProceForm, GpuForm, RamForm, AlmacenamientoForm, FuentesPoderForm, GabineteForm, MonitoreForm
 from django.contrib import messages
+from cart.cart import Cart
 
 
 '''
@@ -15,10 +16,12 @@ from django.contrib import messages
 '''
 
 def index(request):
+   cart = Cart(request)
    return render(request,'index.html',)
 
 
 def placamadre(request):
+   cart = Cart(request)
    productoPlaca = PlacasMadre.objects.all()
 
    return render(
@@ -28,6 +31,7 @@ def placamadre(request):
    )
 
 def procesador(request):
+   cart = Cart(request)
    productoProce = Procesadore.objects.all()
 
    return render (
@@ -37,6 +41,7 @@ def procesador(request):
    )
 
 def video(request):
+   cart = Cart(request)
    productoGpu = Gpu.objects.all()
 
    return render (
@@ -46,6 +51,7 @@ def video(request):
    )
 
 def rams(request):
+   cart = Cart(request)
    productoRam = Ram.objects.all()
 
    return render(
@@ -55,6 +61,7 @@ def rams(request):
    )
 
 def alma(request):
+   cart = Cart(request)
    productoAlmacenamiento = Almacenamiento.objects.all()
 
    return render(
@@ -64,6 +71,7 @@ def alma(request):
    )
 
 def fuente(request):
+   cart = Cart(request)
    productoFuente = FuentesPoder.objects.all()
 
    return render(
@@ -73,6 +81,7 @@ def fuente(request):
    )
 
 def gabo(request):
+   cart = Cart(request)
    productoGabo = Gabinete.objects.all()
 
    return render(

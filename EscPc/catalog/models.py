@@ -27,7 +27,7 @@ class PlacasMadre(models.Model):
    stock = models.IntegerField(default=0,help_text='Stock del producto')
    imagen = models.ImageField(upload_to='placasmadres/',null=True)
    imagen_detail = models.ImageField(upload_to='placasmadres_detail/',null=True)
-   precio = models.IntegerField(default=0,help_text='Precio del producto')
+   precio = models.IntegerField(default=0)
 
    def __str__(self):
       return f'{self.marca},{self.modelo}'
@@ -242,3 +242,5 @@ class Contacto(models.Model):
 
    def __str__(self):
       return self.email
+   
+   

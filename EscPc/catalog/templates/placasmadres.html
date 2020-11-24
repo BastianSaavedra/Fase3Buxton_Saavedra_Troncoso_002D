@@ -1,8 +1,8 @@
 {% extends "base_generic.html" %}
-
+{% load cart_tags %}
 {% block title %}Placas Madres{% endblock %}
-
 {% block content %}
+
 <body style="background-color: #f8f8f8;">
    <section class="jumbotron text-center">
       <style>
@@ -16,6 +16,7 @@
          </h1>
       </div>
    </section>
+
    <!--Seguimiento-->
    <div class="container" id="seguimiento">
       <div class="col-md-3">
@@ -31,77 +32,94 @@
          </ol>
       </div>
    </div>
+
    {% if perms.app.view_placas_madre %}
-   <div class="my-2 my-lg-0" style="text-align: center;">
+   <div class="my-2 ml-5 my-lg-0" style="text-align: center;">
       <a class="btn btn-warning btn-sm" href="{% url 'placas' %}" style="font-size: 20px;">
          Lista de Productos
       </a>
-   </div>
    {% endif %}
+   {% if user.is_authenticated %}
+      <div class="col-2 float-right">
+         {% include "cart/widget.html" %}
+      </div>
+   {% else %}
+      <p style="font-size: 25px;" class="text-center">
+         Para poder agregar al carrito
+         debes <a href="{% url 'registro' %}">registrarte</a>
+         o <a href="{% url 'login' %}">Iniciar Sesion</a> 
+      </p>
+   {% endif %}
+   </div>
 
-   {% if productoPlaca %}
-   <div class="album py-5">
-      <div class="container">
-         <div class="row">
-               {% for placa in productoPlaca %}
-               <div class="col-md-4">
-                  <div class="card mb-4 shadow-sm">
-                     <a href="{% url 'placas-detail' placa.id %}">
-                           <img class="producto" src="{{ placa.imagen.url }}"/>
+
+   <div class="album py-5 ">
+      <div class="container " >
+         {% if productoPlaca %}
+         <div  class="row">
+            {% for product in productoPlaca %}
+               <div  class="col-md-4">
+                  <div class="card mb-4 shadow-sm ">
+                     <a href="{% url 'placas-detail' product.id %}">
+                        <img  src="{{ product.imagen.url }}"/>
                      </a>
                      <div class="card-body">
-                           <p class="card-text">
-                              <b>
-                                 Marca:
-                              </b>
-                              {{ placa.marca }}
+                        <p class="card-text">
+                           <b >
+                              Marca:
+                           </b>
+                              {{ product.marca }}
+                           <br>
+                           <b>
+                              Modelo:
+                           </b>
+                              {{ product.modelo }}
                               <br>
-                              <b>
-                                 Modelo:
-                              </b>
-                                 {{ placa.modelo }}
-                                 <br>
-                              <b>
-                                 Formato:
-                              </b>
-                                 {{ placa.formato }}
-                                 <br>
-                              <b>
-                                 Plataforma:
-                              </b>
-                                 {{ placa.plataforma }}
-                                 <br>
-                           </p>
-                           <h3>
-                              ${{ placa.precio }}
-                           </h3>
-                           <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                 <a class="btn btn-sm btn-outline-secondary" href="{% url 'placas-detail' placa.id %}">
-                                       Detalles
-                                 </a>
-                                 <button class="btn btn-sm btn-outline-secondary" type="button">
-                                       Agregar
-                                 </button>
-                              </div>
-                              <small class="text-muted ml-2">
-                                 stock:
-                                 <b>
-                                       {{ placa.stock }}
-                                 </b>
-                              </small>
-                           </div>
+                           <b>
+                              Formato:
+                           </b>
+                              {{ product.formato }}
+                              <br>
+                           <b>
+                              Plataforma:
+                           </b>
+                              {{ product.plataforma }}
+                              <br>
+                        </p>
+                        <h3>
+                           ${{ product.precio }}
+                        </h3>
+                        <small class="text-muted ml-2">
+                           stock:
+                           <b>
+                                 {{ product.stock }}
+                           </b>
+                        </small>
                      </div>
+                     <div class=" card-footer text-center  mb-3  btn-group">
+                        <a class="btn btn-sm btn-info" 
+                              href="{% url 'placas-detail' product.id %}">
+                           Detalles
+                        </a>
+                        {% if user.is_authenticated %}
+                           <a href="{% url 'cart:add_product' product.id %}"
+                              class="btn btn-sm btn-success"
+                           >
+                              Agregar a carrito
+                           </a>
+                        {% endif %}
+                     </div>      
                   </div>
                </div>
-               {% endfor %}
+            {% endfor %}
+            </div>
          </div>
+         {% else %}
+            <p>
+               No hay productos
+            </p>
+         {% endif %}    
       </div>
    </div>
-   {% else %}
-   <p>
-      No hay productos
-   </p>
-   {% endif %}
 </body>
 {% endblock %}
