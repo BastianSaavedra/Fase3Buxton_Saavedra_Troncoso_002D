@@ -2,8 +2,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import PlacasMadre, Procesadore, Gpu, Ram, Almacenamiento, FuentesPoder, Gabinete, Monitore, Contacto
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+
 
 '''
    AQUI SE ENCUENTRAN LOS FORMULARIOS QUE SE OCUPARAN, EN ESTE CASO ESTAMOS 
@@ -15,7 +14,8 @@ class PlacaForm(ModelForm):
 
    class Meta:
       model = PlacasMadre
-      fields = '__all__'
+      fields = ('marca', 'modelo', 'formato', 'plataforma', 'stock', 
+               'imagen', 'imagen_detail', 'precio')
 
 class ProceForm(ModelForm):
 
@@ -27,13 +27,13 @@ class GpuForm(ModelForm):
 
    class Meta:
       model = Gpu
-      fields = '__all__'
+      fields = ('marca', 'modelo', 'plataforma', 'memoria', 'frecuencia', 'stock', 'imagen', 'imagen_detail', 'precio')
 
 class RamForm(ModelForm):
 
    class Meta:
       model = Ram
-      fields = '__all__'
+      fields = ('marca', 'capacidad', 'tipo', 'frecuencia', 'formato', 'stock', 'imagen', 'imagen_detail', 'precio',)
 
 class AlmacenamientoForm(ModelForm):
 

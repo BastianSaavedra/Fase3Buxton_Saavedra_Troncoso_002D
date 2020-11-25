@@ -31,6 +31,8 @@ def clear_cart(request):
    cart.clear()
    return redirect("placamadre")
 
+
+
 # PROCESADOR
 @login_required(login_url="/registration/login")
 def add_procesador(request, product_id):

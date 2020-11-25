@@ -50,12 +50,5 @@
             Total: {{ cart_total_amount|money_format:"$"}}
          </td>
       </tr>
-      {% if request.session.cart.items %}
-         <tr>
-            <td colspan="3">
-               <a href="#" class="btn btn-success">Crear Pedido</a>
-            </td>
-         </tr>
-      {% endif %}
    </tfoot>
 </table>
