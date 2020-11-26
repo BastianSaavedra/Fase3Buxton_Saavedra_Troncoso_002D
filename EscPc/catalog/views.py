@@ -6,9 +6,6 @@ from .forms import PlacaForm, ContactoForm, ProceForm, GpuForm, RamForm, Almacen
 from django.contrib import messages
 from cart.cart import Cart
 
-#rest_framework
-from rest_framework import viewsets
-from .serializers import PlacasMadreSerializer, ProcesadorSerializer, GpuSerializer, RamSerializer
 
 
 
@@ -19,24 +16,6 @@ from .serializers import PlacasMadreSerializer, ProcesadorSerializer, GpuSeriali
    CADA CLASE, LUEGO SE ENCUENTRAN LAS LISTAS DE LOS PRODUCTOS TANTO ListView
    COMO DetailVIEW, TAMBIEN SE ENCUENTRA EL CRUD DE CADA TIPO DE PRODUCTO DONDE ESTA EL CREAR, MODIFICAR Y ELIMINAR.
 '''
-
-#API
-class PlacasMadreViewSet(viewsets.ModelViewSet):
-   serializer_class = PlacasMadreSerializer
-   queryset = PlacasMadre.objects.all()
-   
-class ProcesadorViewSet(viewsets.ModelViewSet):
-   serializer_class = ProcesadorSerializer
-   queryset = Procesadore.objects.all()
-   
-class GpuViewSet(viewsets.ModelViewSet):
-   serializer_class = GpuSerializer
-   queryset = Gpu.objects.all()
-   
-class RamViewSet(viewsets.ModelViewSet):
-   serializer_class = RamSerializer
-   queryset = Ram.objects.all()
-
 
 def index(request):
    cart = Cart(request)

@@ -18,8 +18,16 @@ from django.urls import path
 from django.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
+from EscPc.quickstart import views
+from rest_framework import routers
 
-
+#API
+router = routers.DefaultRouter()
+router.register(r'motherboard', views.PlacasMadreViewSet)
+router.register(r'processor', views.ProcesadorViewSet)
+router.register(r'gpu', views.GpuViewSet)
+router.register(r'memorias-ram', views.RamViewSet)
+router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
    path('admin/', admin.site.urls),
@@ -27,6 +35,8 @@ urlpatterns = [
    path('accounts/', include('django.contrib.auth.urls')),
    path('accounts/', include('sesion.urls')),
    path('cart/', include('cart.urls')),
+   path('', include(router.urls)),
+   path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root= settings.STATIC_ROOT)

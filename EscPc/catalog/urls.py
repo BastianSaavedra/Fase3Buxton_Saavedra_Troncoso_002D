@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 from django.urls import path, include
 from . import views
-from rest_framework import routers 
-
 
 '''
       AQUI SE ENCUENTRAN LAS URLS DE LOS PRODUCTOS, TANTO LISTAS COMO
@@ -10,23 +8,14 @@ from rest_framework import routers
       COMO SEGUNDO, LA VISTA DE DONDE SE SACARA LA INFO Y COMO TERCER PARA-
       METRO, UN NOMBRE PARA PODER LLAMAR A LA URL DESDE OTRA PESTANNIA
    '''
-   
-router = routers.DefaultRouter()
-router.register('motherboards', views.PlacasMadreViewSet)
-router.register('processor', views.ProcesadorViewSet)
-router.register('Gpu', views.GpuViewSet)
-router.register('Memorias-Ram', views.RamViewSet)
-
-
 
 urlpatterns = [
    
    #API
    
-   path('api/', include(router.urls)),
    
    # URL PRINCIPALES
-   path('index', views.index, name="index"),
+   path('home', views.index, name="index"),
    path('placasmadres/', views.placamadre, name="placamadre"),
    path('procesadores/', views.procesador, name="procesador"),
    path('tarjetadevideo/', views.video, name="video"),
