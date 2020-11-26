@@ -6,6 +6,11 @@ from .forms import PlacaForm, ContactoForm, ProceForm, GpuForm, RamForm, Almacen
 from django.contrib import messages
 from cart.cart import Cart
 
+#rest_framework
+from rest_framework import viewsets
+from .serializers import PlacasMadreSerializer, ProcesadorSerializer, GpuSerializer, RamSerializer
+
+
 
 '''
    AQUI SE ENCUENTRAN LAS VISTAS DE LOS PRODUCTOS, AQUI UNO PUEDE SACAR LOS
@@ -15,10 +20,27 @@ from cart.cart import Cart
    COMO DetailVIEW, TAMBIEN SE ENCUENTRA EL CRUD DE CADA TIPO DE PRODUCTO DONDE ESTA EL CREAR, MODIFICAR Y ELIMINAR.
 '''
 
+#API
+class PlacasMadreViewSet(viewsets.ModelViewSet):
+   serializer_class = PlacasMadreSerializer
+   queryset = PlacasMadre.objects.all()
+   
+class ProcesadorViewSet(viewsets.ModelViewSet):
+   serializer_class = ProcesadorSerializer
+   queryset = Procesadore.objects.all()
+   
+class GpuViewSet(viewsets.ModelViewSet):
+   serializer_class = GpuSerializer
+   queryset = Gpu.objects.all()
+   
+class RamViewSet(viewsets.ModelViewSet):
+   serializer_class = RamSerializer
+   queryset = Ram.objects.all()
+
+
 def index(request):
    cart = Cart(request)
    return render(request,'index.html',)
-
 
 def placamadre(request):
    cart = Cart(request)
@@ -104,6 +126,7 @@ class PlacaListView(ListView):
    model = PlacasMadre
    template_name = 'catalogo/PLacamadre/placasmadre_list.html'
 
+
 class PlacaDetailView(DetailView):
    model = PlacasMadre
    template_name = 'catalogo/Placamadre/placasmadre_detail.html'
@@ -112,6 +135,7 @@ class PlacaDetailView(DetailView):
 class ProceListView(ListView):
    model = Procesadore
    template_name = 'catalogo/Procesador/procesadore_list.html'
+
 
 class ProceDetailView(DetailView):
    model = Procesadore
@@ -122,6 +146,7 @@ class GpuListView(ListView):
    model = Gpu
    template_name = 'catalogo/TargetaVideo/gpu_list.html'
 
+
 class GpuDetailView(DetailView):
    model = Gpu
    template_name = 'catalogo/TargetaVideo/gpu_detail.html'
@@ -131,17 +156,21 @@ class RamListView(ListView):
    model = Ram
    template_name = 'catalogo/Ram/ram_list.html'
 
+
 class RamDetailView(DetailView):
    model = Ram
    template_name = 'catalogo/Ram/ram_detail.html'
+
 
 class AlmacenamientoListView(ListView):
    model = Almacenamiento
    template_name = 'catalogo/Almacenamiento/almacenamiento_list.html'
 
+
 class AlmacenamientoDetailView(DetailView):
    model = Almacenamiento
    template_name = 'catalogo/Almacenamiento/almacenamiento_detail.html'
+
 
 class FuentesPoderListView(ListView):
    model = FuentesPoder
@@ -150,6 +179,7 @@ class FuentesPoderListView(ListView):
 class FuentesPoderDetailView(DetailView):
    model = FuentesPoder
    template_name = 'catalogo/FuentesPoder/fuentespoder_detail.html'
+
 
 class GabineteListView(ListView):
    model = Gabinete
@@ -450,3 +480,7 @@ def contacto(request):
       else:
          data["contactoform"] = formulario
    return render(request, 'contacto.html', data)
+
+
+
+

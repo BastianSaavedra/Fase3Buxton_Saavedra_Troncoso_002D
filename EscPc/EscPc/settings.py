@@ -48,6 +48,8 @@ INSTALLED_APPS = [
    'sesion.apps.SesionConfig',
    'crispy_forms',
    'cart',
+   'rest_framework',
+
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

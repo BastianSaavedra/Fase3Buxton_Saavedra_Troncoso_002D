@@ -11,11 +11,9 @@ from .models import PlacasMadre, Procesadore, Gpu, Ram, Almacenamiento, FuentesP
 
 
 class PlacaForm(ModelForm):
-
    class Meta:
       model = PlacasMadre
-      fields = ('marca', 'modelo', 'formato', 'plataforma', 'stock', 
-               'imagen', 'imagen_detail', 'precio')
+      fields = '__all__'
 
 class ProceForm(ModelForm):
 
@@ -27,13 +25,13 @@ class GpuForm(ModelForm):
 
    class Meta:
       model = Gpu
-      fields = ('marca', 'modelo', 'plataforma', 'memoria', 'frecuencia', 'stock', 'imagen', 'imagen_detail', 'precio')
+      fields = '__all__'
 
 class RamForm(ModelForm):
 
    class Meta:
       model = Ram
-      fields = ('marca', 'capacidad', 'tipo', 'frecuencia', 'formato', 'stock', 'imagen', 'imagen_detail', 'precio',)
+      fields = '__all__'
 
 class AlmacenamientoForm(ModelForm):
 
