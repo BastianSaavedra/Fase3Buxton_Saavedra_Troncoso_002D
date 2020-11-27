@@ -10,7 +10,7 @@ django-test==0.4030
 djangorestframework==3.12.2
 filelock==3.0.12
 isort==5.5.4
-lazy-object-proxy   1.4.3
+lazy-object-proxy==1.4.3
 mccabe==0.6.1
 Pillow==8.0.1
 pip==20.2.4
