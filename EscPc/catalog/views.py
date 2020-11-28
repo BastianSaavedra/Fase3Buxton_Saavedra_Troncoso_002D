@@ -103,7 +103,7 @@ def moni(request):
 
 class PlacaListView(ListView):
    model = PlacasMadre
-   template_name = 'catalogo/PLacamadre/placasmadre_list.html'
+   template_name = 'catalogo/Placamadre/placasmadre_list.html'
 
 
 class PlacaDetailView(DetailView):
